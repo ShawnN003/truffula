@@ -13,7 +13,8 @@ printTree method afterwards.
 This is going to add color to the Enum(which are constant values ) using ANSI code. 
 
 ## ColorPrinter.java / ColorPrinterTest.java
-The purpose for colorPrinter.java is to create a new object and passing a printStream object. After getting the argument, you can use the different methods to obtain the color, set the color, and printing the message. 
+The purpose for colorPrinter.java is to create a new object and passing a printStream object. After getting the argument, you can use the different methods to obtain the color, set the color, and printing the message.
+The colorPrintTest is going to change the color of the output to the color we set it using the ANSI and after printing it its going to change back to the default( using the rest)  
 ## TruffulaOptions.java / TruffulaOptionsTest.java
 
 ## TruffulaPrinter.java / TruffulaPrinterTest.java

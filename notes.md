@@ -10,6 +10,7 @@ or show hidden files. We'll be using the TruffulaOptions object to accomplish th
 printTree method afterwards. 
 
 ## ConsoleColor.java
+This is going to add color to the Enum(which are constant values ) using ANSI code. 
 
 ## ColorPrinter.java / ColorPrinterTest.java
 

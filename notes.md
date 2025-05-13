@@ -4,7 +4,10 @@ As part of Wave 0, please fill out notes for each of the below files!!!!!!!. The
 PLEASE MAKE FREQUENT COMMITS AS YOU FILL OUT THIS FILE.
 
 ## App.java
-
+This is supposed to implement different functions for the user to either show hidden files or show colored files. 
+to implement these functions we need to use the path that will be used, then determining: to use color, not use color,
+or show hidden files. We'll be using the TruffulaOptions object to accomplish this, create a new TruffulaPrinter then use the 
+printTree method afterwards. 
 
 ## ConsoleColor.java
 

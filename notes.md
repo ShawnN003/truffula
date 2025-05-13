@@ -5,6 +5,7 @@ PLEASE MAKE FREQUENT COMMITS AS YOU FILL OUT THIS FILE.
 
 ## App.java
 
+
 ## ConsoleColor.java
 
 ## ColorPrinter.java / ColorPrinterTest.java

@@ -20,5 +20,7 @@ The responsibility of TruffulaOptions.java is to contruct an object with the fil
 and whether color will be used. It is also responsible for outputting a toString to show the user which options are picked. 
 TruffulaOptionsTest will be responsible for making sure the files, hidden files, and color will be outputted properly. 
 ## TruffulaPrinter.java / TruffulaPrinterTest.java
+The TruffulaPrint class prints folder in the console with the color we set it( using the TruffulaOptions).
+The TruffulaPrinterTest make sure the folder structure is printed correctly like(correct color, correct format....)
 
 ## AlphabeticalFileSorter.java

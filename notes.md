@@ -24,3 +24,4 @@ The TruffulaPrint class prints folder in the console with the color we set it( u
 The TruffulaPrinterTest make sure the folder structure is printed correctly like(correct color, correct format....)
 
 ## AlphabeticalFileSorter.java
+It's using lambdas (anonymous functions) to quickly arrange arrays of files alphabetically 

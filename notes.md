@@ -16,7 +16,9 @@ This is going to add color to the Enum(which are constant values ) using ANSI co
 The purpose for colorPrinter.java is to create a new object and passing a printStream object. After getting the argument, you can use the different methods to obtain the color, set the color, and printing the message.
 The colorPrintTest is going to change the color of the output to the color we set it using the ANSI and after printing it its going to change back to the default( using the rest)  
 ## TruffulaOptions.java / TruffulaOptionsTest.java
-
+The responsibility of TruffulaOptions.java is to contruct an object with the file from the user, whether the file will be used, 
+and whether color will be used. It is also responsible for outputting a toString to show the user which options are picked. 
+TruffulaOptionsTest will be responsible for making sure the files, hidden files, and color will be outputted properly. 
 ## TruffulaPrinter.java / TruffulaPrinterTest.java
 
 ## AlphabeticalFileSorter.java

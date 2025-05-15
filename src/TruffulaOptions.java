@@ -115,13 +115,16 @@ public class TruffulaOptions  {
       {
         hiddenCheck = true;
       }
-      if(args[i].equals("-nc") )
+      else if(args[i].equals("-nc") )
       {
         colorCheck = false;
       }      
-      if(i == args.length)
+      else if(location == "")
       {
          location = args[i];
+      }
+      else{
+        throw new IllegalArgumentException("");
       }
     }
     File roots = new File(location);

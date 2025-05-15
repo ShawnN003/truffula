@@ -104,7 +104,7 @@ public class TruffulaOptions  {
     
     boolean hiddenCheck = false;
     boolean colorCheck = true;
-    String location = null;
+    String location = "";
 
 
     for(int i = 0; i < args.length; i++)
@@ -117,7 +117,7 @@ public class TruffulaOptions  {
       {
         colorCheck = false;
       }      
-      else if(location == null)
+      else if(location == "")
       {
          location = args[i];
       }

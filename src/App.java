@@ -42,12 +42,8 @@ public class App {
    */
   public static void main(String[] args) throws Exception {
     // TODO: Implement this
-    String[] test ={"-nc", "-h", "C:\\Users\\202207154\\sdev333\\truffula\\src\\App.java"};
     // You should create a TruffulaOptions object using the args and
-    TruffulaOptions options = new TruffulaOptions(test);
     // pass it to a new TruffulaPrinter that uses System.out
-    TruffulaPrinter truffula = new TruffulaPrinter(options);
     // Then, call printTree on the TruffulaPrinter
-    truffula.printTree();
   }
 }

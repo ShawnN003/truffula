@@ -104,39 +104,41 @@ public class TruffulaOptions  {
     
     boolean hiddenCheck = false;
     boolean colorCheck = true;
-    String location = "";
-
-
+    String location = null;
 
 
     for(int i = 0; i < args.length; i++)
     {
-      if(args[i].equals("-h") )
+      if(args[i].equals("-h"))
       {
         hiddenCheck = true;
       }
-      else if(args[i].equals("-nc") )
+      else if(args[i].equals("-nc"))
       {
         colorCheck = false;
       }      
-      else if(location == "")
+      else if(location == null)
       {
          location = args[i];
       }
       else{
-        throw new IllegalArgumentException("");
+        throw new IllegalArgumentException("Invalid Argument Passed!");
       }
     }
     File roots = new File(location);
 
-
-    // TODO: Replace the below lines with your implementation
+    
+    if(!roots.exists())
+    {
+      throw new FileNotFoundException("No File Exists!");
+    }
+    if(!roots.isDirectory())
+    {
+      throw new FileNotFoundException("Invalid Directory!");
+    }
     root = roots;
     showHidden = hiddenCheck;
     useColor = colorCheck;
-
-
-
   }
 
   /**

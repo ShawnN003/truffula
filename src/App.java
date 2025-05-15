@@ -48,6 +48,6 @@ public class App {
     // pass it to a new TruffulaPrinter that uses System.out
     TruffulaPrinter truffula = new TruffulaPrinter(options);
     // Then, call printTree on the TruffulaPrinter
-    truffula.printTree();
+    truffula.printTre
   }
 }

@@ -104,9 +104,11 @@ public class TruffulaOptions  {
     
     boolean hiddenCheck = false;
     boolean colorCheck = true;
-    String path = "";
-    File directory = getRoot();
-    
+    String location = "";
+
+
+
+
     for(int i = 0; i < args.length; i++)
     {
       if(args[i].equals("-h") )
@@ -116,22 +118,22 @@ public class TruffulaOptions  {
       if(args[i].equals("-nc") )
       {
         colorCheck = false;
+      }      
+      if(i == args.length)
+      {
+         location = args[i];
       }
-      if(!directory.isDirectory()){
-        throw new IllegalArgumentException("Invalid directory");
-      }
-      
-
-      if(!directory.exists()){
-        throw new FileNotFoundException("File not found");
-      }
-
-      
     }
+    File roots = new File(location);
+
+
     // TODO: Replace the below lines with your implementation
-    root = directory;
+    root = roots;
     showHidden = hiddenCheck;
     useColor = colorCheck;
+
+
+
   }
 
   /**

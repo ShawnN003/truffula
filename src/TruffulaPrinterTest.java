@@ -149,4 +149,101 @@ public class TruffulaPrinterTest {
         // Assert that the output matches the expected output exactly
         assertEquals(expected.toString(), output);
     }
+
+    @Test
+    public void testPrintTree_SimpleCustomTest(@TempDir File tempDir) throws IOException {
+        // Build the example directory structure:
+        // myFolder/
+        //    .hidden.txt
+        //    Grape.txt
+        //    Watermelon.txt
+        //    Documents/
+        //       images/
+        //          Wolf.png
+        //          Lion.png
+        //          Tiger.png
+        //       notes.txt
+        //       README.md
+        //    Horse.txt
+
+        // Create "myFolder"
+        File myFolder = new File(tempDir, "myFolder");
+        assertTrue(myFolder.mkdir(), "myFolder should be created");
+
+        // Create visible files in myFolder
+        File grape = new File(myFolder, "grape.txt");
+        File water = new File(myFolder, "watermelon.txt");
+        File horse = new File(myFolder, "horse.txt");
+        grape.createNewFile();
+        water.createNewFile();
+        horse.createNewFile();
+
+        // Create a hidden file in myFolder
+        createHiddenFile(myFolder, ".hidden.txt");
+
+        // Create subdirectory "Documents" in myFolder
+        File documents = new File(myFolder, "Documents");
+        assertTrue(documents.mkdir(), "Documents directory should be created");
+
+        // Create files in Documents
+        File readme = new File(documents, "README.md");
+        File notes = new File(documents, "notes.txt");
+        readme.createNewFile();
+        notes.createNewFile();
+
+        // Create subdirectory "images" in Documents
+        File images = new File(documents, "images");
+        assertTrue(images.mkdir(), "images directory should be created");
+
+        // Create files in images
+        File lion = new File(images, "lion.png");
+        File wolf = new File(images, "wolf.png");
+        lion.createNewFile();
+        wolf.createNewFile();
+
+        // Set up TruffulaOptions with showHidden = false and useColor = true
+        TruffulaOptions options = new TruffulaOptions(myFolder, false, false);
+
+        // Capture output using a custom PrintStream
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(baos);
+
+        // Instantiate TruffulaPrinter with custom PrintStream
+        TruffulaPrinter printer = new TruffulaPrinter(options, printStream);
+
+        // Call printTree (output goes to printStream)
+        printer.printTree();
+
+        // Retrieve printed output
+        String output = baos.toString();
+        String nl = System.lineSeparator();
+
+        // myFolder/
+        //    .hidden.txt
+        //    Grape.txt
+        //    Watermelon.txt
+        //    Documents/
+        //       images/
+        //          Wolf.png
+        //          Lion.png
+        //          Tiger.png
+        //       notes.txt
+        //       README.md
+        //    Horse.txt
+
+        StringBuilder expected = new StringBuilder();
+        expected.append("myFolder/").append(nl);
+        expected.append("   grape.txt").append(nl);
+        expected.append("   watermelon.txt").append(nl);
+        expected.append("   Documents/").append(nl);
+        expected.append("       images/").append(nl);
+        expected.append("           wolf.png").append(nl);
+        expected.append("           lion.png").append(nl);
+        expected.append("       notes.txt").append(nl);
+        expected.append("       README.md").append(nl);
+        expected.append("   horse.txt").append(nl);
+
+        // Assert that the output matches the expected output exactly
+        assertEquals(expected.toString(), output);
+    }
 }

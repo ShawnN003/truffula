@@ -78,7 +78,7 @@ public class TruffulaPrinter {
   /**
    * WAVE 4: Prints a tree representing the directory structure, with directories and files
    * sorted in a case-insensitive manner. The tree is displayed with 3 spaces of
-   * indentation for each directory level.
+   * indentation for each directory level..
    * 
    * WAVE 5: If hidden files are not to be shown, then no hidden files/folders will be shown.
    *

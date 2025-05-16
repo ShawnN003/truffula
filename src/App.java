@@ -39,6 +39,8 @@ public class App {
    *    → Use color, don't show hidden files.
    * 
    * Error messages will be shown for illegal arguments or a not found file
+   * 
+   * java src/App.java -nc -h src
    */
   public static void main(String[] args) throws Exception {
     // TODO: Implement this

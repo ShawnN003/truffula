@@ -1,3 +1,5 @@
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.PrintStream;
 import java.util.List;
 
@@ -103,6 +105,12 @@ public class TruffulaPrinter {
    *    zebra.txt
    */
   public void printTree() {
+    File user = new File(options.getRoot().getAbsolutePath());
+    File list[] = user.listFiles();
+    for(int i = 0; i < list.length; i++)
+    {
+      out.println(list[i].getAbsolutePath());
+    }
     // TODO: Implement this!
     // REQUIRED: ONLY use java.io, DO NOT use java.nio
     
@@ -112,7 +120,6 @@ public class TruffulaPrinter {
     // DO NOT USE SYSTEM.OUT.PRINTLN
     // USE out.println instead (will use your ColorPrinter)
 
-    out.println("printTree was called!");
-    out.println("My options are: " + options);
+    
   }
 }

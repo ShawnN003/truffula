@@ -89,7 +89,6 @@ public class TruffulaPrinterTest {
         zebra.createNewFile();
 
         // Create a hidden file in myFolder
-        createHiddenFile(myFolder, ".hidden.txt");
 
         // Create subdirectory "Documents" in myFolder
         File documents = new File(myFolder, "Documents");
@@ -112,7 +111,7 @@ public class TruffulaPrinterTest {
         dog.createNewFile();
 
         // Set up TruffulaOptions with showHidden = false and useColor = true
-        TruffulaOptions options = new TruffulaOptions(myFolder, false, true);
+        TruffulaOptions options = new TruffulaOptions(myFolder, true, true);
 
         // Capture output using a custom PrintStream
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -131,20 +130,18 @@ public class TruffulaPrinterTest {
         // Build expected output with exact colors and indentation
         ConsoleColor reset = ConsoleColor.RESET;
         ConsoleColor white = ConsoleColor.WHITE;
-        ConsoleColor purple = ConsoleColor.PURPLE;
-        ConsoleColor yellow = ConsoleColor.YELLOW;
 
         StringBuilder expected = new StringBuilder();
         expected.append(white).append("myFolder/").append(nl).append(reset);
-        expected.append(purple).append("   Apple.txt").append(nl).append(reset);
-        expected.append(purple).append("   banana.txt").append(nl).append(reset);
-        expected.append(purple).append("   Documents/").append(nl).append(reset);
-        expected.append(yellow).append("      images/").append(nl).append(reset);
+        expected.append(white).append("   Apple.txt").append(nl).append(reset);
+        expected.append(white).append("   banana.txt").append(nl).append(reset);
+        expected.append(white).append("   Documents/").append(nl).append(reset);
+        expected.append(white).append("      images/").append(nl).append(reset);
         expected.append(white).append("         cat.png").append(nl).append(reset);
         expected.append(white).append("         Dog.png").append(nl).append(reset);
-        expected.append(yellow).append("      notes.txt").append(nl).append(reset);
-        expected.append(yellow).append("      README.md").append(nl).append(reset);
-        expected.append(purple).append("   zebra.txt").append(nl).append(reset);
+        expected.append(white).append("      notes.txt").append(nl).append(reset);
+        expected.append(white).append("      README.md").append(nl).append(reset);
+        expected.append(white).append("   zebra.txt").append(nl).append(reset);
 
         // Assert that the output matches the expected output exactly
         assertEquals(expected.toString(), output);

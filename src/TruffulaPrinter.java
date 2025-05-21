@@ -152,7 +152,7 @@ public class TruffulaPrinter {
     if(file.isDirectory()){
       
       //print name of file and folder
-      out.println(space + file.getName(),true);
+      out.println(space + file.getName() + '/');
 
       //get all items
       File[] files = file.listFiles();

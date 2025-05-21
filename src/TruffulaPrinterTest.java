@@ -246,4 +246,67 @@ public class TruffulaPrinterTest {
         // Assert that the output matches the expected output exactly
         assertEquals(expected.toString(), output);
     }
+
+
+    @Test
+    public void testPrintTree_simple(@TempDir File tempDir) throws IOException{
+         // Build the example directory structure:
+        // zoo/
+        //    red.txt
+        //    animals/
+        //       lion.txt
+
+        //create roo directory "zoo"
+        File zoo = new File(tempDir, "zoo");
+        assertTrue(zoo.mkdir(), "zoo directory should be created");
+
+        //create file "red.txt" inside zoo
+        File red = new File(zoo, "red.txt");
+        assertTrue(red.createNewFile(), "red.txt should be created");
+
+        //create subdirectory "animals" inside zoo
+        File animals = new File(zoo, "animals");
+        assertTrue(animals.mkdir(), "animals directory should be created");
+
+        // Create file "lion.txt" inside animals
+        File lion = new File(animals, "lion.txt");
+        assertTrue(lion.createNewFile(), "lion.txt should be created");
+
+        // Set up TruffulaOptions: zoo directory, no hidden files, no color
+        TruffulaOptions options = new TruffulaOptions(zoo, false, false);
+
+        // Use ByteArrayOutputStream to capture output for assertion
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream out = new PrintStream(baos);
+
+        // Create TruffulaPrinter with options and custom PrintStream
+        TruffulaPrinter printer = new TruffulaPrinter(options, out);
+
+        // Call printTree to print directory structure to out
+        printer.printTree();
+
+        // Define expected output with proper indentation and folder slashes
+        String nl = System.lineSeparator();
+        String expected =
+            "zoo/" + nl
+            + "   animals/" + nl
+            + "      lion.txt" + nl
+            + "   red.txt" + nl;
+
+
+            // zoo/
+        //    red.txt
+        //    animals/
+        //       lion.txt
+
+        // Assert the captured output equals expected output exactly
+        assertEquals(expected, baos.toString());
+
+
+    }
+
+
+
+
+
 }

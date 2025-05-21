@@ -105,12 +105,30 @@ public class TruffulaPrinter {
    *    zebra.txt
    */
   public void printTree() {
-    File user = new File(options.getRoot().getAbsolutePath());
-    File list[] = user.listFiles();
-    for(int i = 0; i < list.length; i++)
-    {
-      out.println(list[i].getAbsolutePath());
+    // File user = new File(options.getRoot().getAbsolutePath());
+    // File list[] = user.listFiles();
+    // for(int i = 0; i < list.length; i++)
+    // {
+    //   out.println(list[i].getAbsolutePath());
+    // }
+
+
+    //get the folder
+    File folder = options.getRoot();
+
+    //check folder exists and if directory
+    if(!folder.exists() || !folder.isDirectory()){
+      out.println("invalid directory");
+      return;
     }
+
+    //print from root folder
+    printTreeHelper(folder, 0);
+
+
+
+
+
     // TODO: Implement this!
     // REQUIRED: ONLY use java.io, DO NOT use java.nio
     
@@ -121,5 +139,33 @@ public class TruffulaPrinter {
     // USE out.println instead (will use your ColorPrinter)
 
     
+  }
+
+  public void printTreeHelper(File file, int level){
+    //3 space for each level
+    String space ="";
+    for(int i =0; i < level; i++){
+      space += "   ";
+    }
+    
+    //if folder print inside
+    if(file.isDirectory()){
+      
+      //print name of file and folder
+      out.println(space + file.getName() + "/");
+
+      //get all items
+      File[] files = file.listFiles();
+
+      if(files !=null){
+        for (int i=0; i< files.length; i++){
+          //go down in the folder
+          printTreeHelper(files[i], level +1);
+        }
+      }
+
+    }else{
+      out.println(space +file.getName());
+    }
   }
 }

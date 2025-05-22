@@ -301,9 +301,11 @@ public class TruffulaPrinterTest {
         ConsoleColor white = ConsoleColor.WHITE;
 
         StringBuilder expected = new StringBuilder();
-        expected.append(white).append("myFolder/").append(nl).append(reset);
+        expected.append(white).append(" /").append(nl).append(reset);
 
         // Assert that the output matches the expected output exactly
-        assertFalse(myFolder.mkdir(), "myFolder should have nothing");
+        assertEquals(expected.toString(), output);
 }
+
+
 }

@@ -404,6 +404,118 @@ public void testPrintTree_HiddenFileTester(@TempDir File tempDir) throws IOExcep
     assertEquals(expected.toString(), output);
 }
 
+@Test
+public void testPrintTree_MultipleHiddenFileTester(@TempDir File tempDir) throws IOException {
+
+    // Create "myFolder"
+    File myFolder = new File(tempDir, "myFolder");
+    assertTrue(myFolder.mkdir(), "myFolder should be created");
+
+    // Create visible files in myFolder
+    File first = new File(myFolder, "Hi.txt");
+    File second = new File(myFolder, "There.txt");
+    File third = new File(myFolder, "Summer.txt");
+    first.createNewFile();
+    second.createNewFile();
+    third.createNewFile();
+
+    // Create a hidden file in myFolder
+    createHiddenFile(myFolder, ".hidden.txt");
+    createHiddenFile(myFolder, ".unseen.txt");
+    createHiddenFile(myFolder, ".hide.txt");
+
+
+
+
+    // Create files in Documents
+
+    // Set up TruffulaOptions with showHidden = false and useColor = true
+    TruffulaOptions options = new TruffulaOptions(myFolder, true, true);
+
+    // Capture output using a custom PrintStream
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    PrintStream printStream = new PrintStream(baos);
+
+    // Instantiate TruffulaPrinter with custom PrintStream
+    TruffulaPrinter printer = new TruffulaPrinter(options, printStream);
+
+    // Call printTree (output goes to printStream)
+    printer.printTree();
+
+    // Retrieve printed output
+    String output = baos.toString();
+    String nl = System.lineSeparator();
+
+    // Build expected output with exact colors and indentation
+    ConsoleColor reset = ConsoleColor.RESET;
+    ConsoleColor white = ConsoleColor.WHITE;
+
+
+    StringBuilder expected = new StringBuilder();
+    expected.append(white).append("myFolder/").append(nl).append(reset);
+    expected.append(white).append("   Hi.txt").append(nl).append(reset);
+     expected.append(white).append("   Summer.txt").append(nl).append(reset);
+    expected.append(white).append("   There.txt").append(nl).append(reset);
+   
+
+    assertEquals(expected.toString(), output);
+}
+
+
+@Test
+public void testPrintTree_onlyHiddenFileTester(@TempDir File tempDir) throws IOException {
+
+    // Create "myFolder"
+    
+
+    
+
+    // Create a hidden file in myFolder
+    createHiddenFile(tempDir, ".hidden.txt");
+    createHiddenFile(tempDir, ".unseen.txt");
+    createHiddenFile(tempDir, ".hide.txt");
+
+
+
+
+    // Create files in Documents
+
+    // Set up TruffulaOptions with showHidden = false and useColor = true
+    TruffulaOptions options = new TruffulaOptions(tempDir, true, true);
+
+    // Capture output using a custom PrintStream
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    PrintStream printStream = new PrintStream(baos);
+
+    // Instantiate TruffulaPrinter with custom PrintStream
+    TruffulaPrinter printer = new TruffulaPrinter(options, printStream);
+
+    // Call printTree (output goes to printStream)
+    printer.printTree();
+
+    // Retrieve printed output
+    String output = baos.toString();
+    String nl = System.lineSeparator();
+
+    // Build expected output with exact colors and indentation
+    ConsoleColor reset = ConsoleColor.RESET;
+    ConsoleColor white = ConsoleColor.WHITE;
+
+
+    StringBuilder expected = new StringBuilder();
+    
+   
+    expected.append(white).append(tempDir.getName() + ("/")).append(nl).append(reset);
+    assertEquals(expected.toString(), output);
 
 }
+
+
+
+}
+
+
+
+
+
 

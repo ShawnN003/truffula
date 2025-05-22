@@ -307,5 +307,57 @@ public class TruffulaPrinterTest {
         assertEquals(expected.toString(), output);
 }
 
+ @Test
+    public void testPrintTree_TestingOnlyFilesOutput(@TempDir File tempDir) throws IOException {
+
+        File testFile1 = new File(tempDir, "testFile.txt");
+        File testFile2 = new File(tempDir,"dog.txt" );
+        File testFile3 = new File(tempDir,"cat.txt" );
+        File testFile4 = new File(tempDir,"pig.txt" );
+
+        testFile1.createNewFile();
+        testFile2.createNewFile();
+        testFile3.createNewFile();
+        testFile4.createNewFile();
+        
+
+        
+
+        // Set up TruffulaOptions with showHidden = false and useColor = true
+        TruffulaOptions options = new TruffulaOptions(tempDir, false, true);
+
+        // Capture output using a custom PrintStream
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(baos);
+
+        // Instantiate TruffulaPrinter with custom PrintStream
+        TruffulaPrinter printer = new TruffulaPrinter(options, printStream);
+
+        // Call printTree (output goes to printStream)
+        printer.printTree();
+
+        // Retrieve printed output
+        String output = baos.toString();
+        String nl = System.lineSeparator();
+
+        // Build expected output with exact colors and indentation
+        ConsoleColor reset = ConsoleColor.RESET;
+        ConsoleColor white = ConsoleColor.WHITE;
+
+        StringBuilder expected = new StringBuilder();
+       
+        // Assert that the output matches the expected output exactly
+
+    
+        expected.append(reset).append("textFile.txt").append(nl).append(reset);
+        expected.append(white).append("dog.txt").append(nl).append(reset);
+        expected.append(white).append("pig.txt").append(nl).append(reset);
+        expected.append(white).append("cat.txt").append(nl).append(reset);
+
+        assertEquals(expected.toString(), output);
+
 
 }
+
+}
+

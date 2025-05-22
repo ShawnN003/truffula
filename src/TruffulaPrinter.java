@@ -148,11 +148,16 @@ public class TruffulaPrinter {
       space += "   ";
     }
     
+
+    
     //if folder print inside
     if(file.isDirectory()){
       
-      //print name of file and folder
-      out.println(space + file.getName() + '/');
+      if(!file.isHidden())
+      {
+        out.println(space + file.getName() + '/');
+      }
+
 
       //get all items
       File[] files = file.listFiles();
@@ -165,7 +170,10 @@ public class TruffulaPrinter {
       }
 
     }else{
-      out.println(space + file.getName());
+      if(!file.isHidden())
+      {
+        out.println(space + file.getName());
+      }
     }
   }
 }

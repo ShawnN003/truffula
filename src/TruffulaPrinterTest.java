@@ -310,17 +310,13 @@ public class TruffulaPrinterTest {
  @Test
     public void testPrintTree_TestingOnlyFilesOutput(@TempDir File tempDir) throws IOException {
 
-        File testFile1 = new File(tempDir, "testFile.txt");
-        File testFile2 = new File(tempDir,"dog.txt" );
         File testFile3 = new File(tempDir,"cat.txt" );
+        File testFile2 = new File(tempDir,"dog.txt" );
         File testFile4 = new File(tempDir,"pig.txt" );
 
-        testFile1.createNewFile();
         testFile2.createNewFile();
         testFile3.createNewFile();
         testFile4.createNewFile();
-        
-
         
 
         // Set up TruffulaOptions with showHidden = false and useColor = true
@@ -347,17 +343,16 @@ public class TruffulaPrinterTest {
         StringBuilder expected = new StringBuilder();
        
         // Assert that the output matches the expected output exactly
-
     
-        expected.append(reset).append("textFile.txt").append(nl).append(reset);
-        expected.append(white).append("dog.txt").append(nl).append(reset);
-        expected.append(white).append("pig.txt").append(nl).append(reset);
-        expected.append(white).append("cat.txt").append(nl).append(reset);
+        expected.append(white).append(tempDir.getName() + '/').append(nl).append(reset);
+        expected.append(white).append("   cat.txt").append(nl).append(reset);
+        expected.append(white).append("   dog.txt").append(nl).append(reset);
+        expected.append(white).append("   pig.txt").append(nl).append(reset);
+
 
         assertEquals(expected.toString(), output);
-
-
 }
+
 
 }
 

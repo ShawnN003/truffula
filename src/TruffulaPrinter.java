@@ -157,6 +157,7 @@ public class TruffulaPrinter {
       {
         out.println(space + file.getName() + '/');
       }
+      
 
 
       //get all items

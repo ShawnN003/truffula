@@ -134,7 +134,7 @@ public class TruffulaPrinterTest {
         ConsoleColor white = ConsoleColor.WHITE;
 
         StringBuilder expected = new StringBuilder();
-        expected.append(reset).append("myFolder/").append(nl).append(reset);
+        expected.append(white).append("myFolder/").append(nl).append(reset);
         expected.append(white).append("   Apple.txt").append(nl).append(reset);
         expected.append(white).append("   banana.txt").append(nl).append(reset);
         expected.append(white).append("   Documents/").append(nl).append(reset);
@@ -304,7 +304,6 @@ public class TruffulaPrinterTest {
         expected.append(white).append("myFolder/").append(nl).append(reset);
 
         // Assert that the output matches the expected output exactly
-        assertFalse(myFolder.mkdir(), "myFolder should be created");
-
+        assertFalse(myFolder.mkdir(), "myFolder should have nothing");
 }
 }

@@ -152,9 +152,9 @@ public class TruffulaPrinter {
     ConsoleColor color = ConsoleColor.WHITE;
     if(options.isUseColor()){
       color = colorSequence.get(level % colorSequence.size());
-
     }
     
+    out.setCurrentColor(color);
 
     
     //if file is directory
@@ -182,8 +182,8 @@ public class TruffulaPrinter {
     }else{
       if(!file.isHidden())
       {
-        out.println(space + file.getName());
         out.setCurrentColor(color);
+        out.println(space + file.getName());
       }
     }
   }

@@ -132,18 +132,20 @@ public class TruffulaPrinterTest {
         // Build expected output with exact colors and indentation
         ConsoleColor reset = ConsoleColor.RESET;
         ConsoleColor white = ConsoleColor.WHITE;
+        ConsoleColor purple = ConsoleColor.PURPLE;
+        ConsoleColor yellow = ConsoleColor.YELLOW;
 
         StringBuilder expected = new StringBuilder();
         expected.append(white).append("myFolder/").append(nl).append(reset);
-        expected.append(white).append("   Apple.txt").append(nl).append(reset);
-        expected.append(white).append("   banana.txt").append(nl).append(reset);
-        expected.append(white).append("   Documents/").append(nl).append(reset);
-        expected.append(white).append("      images/").append(nl).append(reset);
+        expected.append(purple).append("   Apple.txt").append(nl).append(reset);
+        expected.append(purple).append("   banana.txt").append(nl).append(reset);
+        expected.append(purple).append("   Documents/").append(nl).append(reset);
+        expected.append(yellow).append("      images/").append(nl).append(reset);
         expected.append(white).append("         cat.png").append(nl).append(reset);
         expected.append(white).append("         Dog.png").append(nl).append(reset);
-        expected.append(white).append("      notes.txt").append(nl).append(reset);
-        expected.append(white).append("      README.md").append(nl).append(reset);
-        expected.append(white).append("   zebra.txt").append(nl).append(reset);
+        expected.append(yellow).append("      notes.txt").append(nl).append(reset);
+        expected.append(yellow).append("      README.md").append(nl).append(reset);
+        expected.append(purple).append("   zebra.txt").append(nl).append(reset);
 
         // Assert that the output matches the expected output exactly
         assertEquals(expected.toString(), output);
@@ -220,18 +222,21 @@ public class TruffulaPrinterTest {
         // Build expected output with exact colors and indentation
         ConsoleColor reset = ConsoleColor.RESET;
         ConsoleColor white = ConsoleColor.WHITE;
+        ConsoleColor purple = ConsoleColor.PURPLE;
+        ConsoleColor yellow = ConsoleColor.YELLOW;
+        
 
         StringBuilder expected = new StringBuilder();
         expected.append(white).append("myFolder/").append(nl).append(reset);
-        expected.append(white).append("   Documents/").append(nl).append(reset);
-        expected.append(white).append("      Apple.txt").append(nl).append(reset);
-        expected.append(white).append("      banana.txt").append(nl).append(reset);
-        expected.append(white).append("      images/").append(nl).append(reset);
+        expected.append(purple).append("   Documents/").append(nl).append(reset);
+        expected.append(yellow).append("      Apple.txt").append(nl).append(reset);
+        expected.append(yellow).append("      banana.txt").append(nl).append(reset);
+        expected.append(yellow).append("      images/").append(nl).append(reset);
         expected.append(white).append("         cat.png").append(nl).append(reset);
         expected.append(white).append("         Dog.png").append(nl).append(reset);
-        expected.append(white).append("      notes.txt").append(nl).append(reset);
-        expected.append(white).append("      README.md").append(nl).append(reset);
-        expected.append(white).append("   zebra.txt").append(nl).append(reset);
+        expected.append(yellow).append("      notes.txt").append(nl).append(reset);
+        expected.append(yellow).append("      README.md").append(nl).append(reset);
+        expected.append(purple).append("   zebra.txt").append(nl).append(reset);
 
         // Assert that the output matches the expected output exactly
         assertEquals(expected.toString(), output);
@@ -339,15 +344,16 @@ public class TruffulaPrinterTest {
         // Build expected output with exact colors and indentation
         ConsoleColor reset = ConsoleColor.RESET;
         ConsoleColor white = ConsoleColor.WHITE;
-
+        ConsoleColor purple = ConsoleColor.PURPLE;
+        ConsoleColor yellow = ConsoleColor.YELLOW;
         StringBuilder expected = new StringBuilder();
        
         // Assert that the output matches the expected output exactly
     
         expected.append(white).append(tempDir.getName() + '/').append(nl).append(reset);
-        expected.append(white).append("   cat.txt").append(nl).append(reset);
-        expected.append(white).append("   dog.txt").append(nl).append(reset);
-        expected.append(white).append("   pig.txt").append(nl).append(reset);
+        expected.append(purple).append("   cat.txt").append(nl).append(reset);
+        expected.append(purple).append("   dog.txt").append(nl).append(reset);
+        expected.append(purple).append("   pig.txt").append(nl).append(reset);
 
 
         assertEquals(expected.toString(), output);
@@ -393,13 +399,14 @@ public void testPrintTree_HiddenFileTester(@TempDir File tempDir) throws IOExcep
     // Build expected output with exact colors and indentation
     ConsoleColor reset = ConsoleColor.RESET;
     ConsoleColor white = ConsoleColor.WHITE;
-
+    ConsoleColor purple = ConsoleColor.PURPLE;
+    ConsoleColor yellow = ConsoleColor.YELLOW;
 
     StringBuilder expected = new StringBuilder();
     expected.append(white).append("myFolder/").append(nl).append(reset);
-    expected.append(white).append("   This.txt").append(nl).append(reset);
-    expected.append(white).append("   Will.txt").append(nl).append(reset);
-    expected.append(white).append("   Work.txt").append(nl).append(reset);
+    expected.append(purple).append("   This.txt").append(nl).append(reset);
+    expected.append(purple).append("   Will.txt").append(nl).append(reset);
+    expected.append(purple).append("   Work.txt").append(nl).append(reset);
 
     assertEquals(expected.toString(), output);
 }
@@ -449,13 +456,14 @@ public void testPrintTree_MultipleHiddenFileTester(@TempDir File tempDir) throws
     // Build expected output with exact colors and indentation
     ConsoleColor reset = ConsoleColor.RESET;
     ConsoleColor white = ConsoleColor.WHITE;
-
+    ConsoleColor purple = ConsoleColor.PURPLE;
+    ConsoleColor yellow = ConsoleColor.YELLOW;
 
     StringBuilder expected = new StringBuilder();
     expected.append(white).append("myFolder/").append(nl).append(reset);
-    expected.append(white).append("   Hi.txt").append(nl).append(reset);
-     expected.append(white).append("   Summer.txt").append(nl).append(reset);
-    expected.append(white).append("   There.txt").append(nl).append(reset);
+    expected.append(purple).append("   Hi.txt").append(nl).append(reset);
+     expected.append(purple).append("   Summer.txt").append(nl).append(reset);
+    expected.append(purple).append("   There.txt").append(nl).append(reset);
    
 
     assertEquals(expected.toString(), output);
@@ -466,17 +474,11 @@ public void testPrintTree_MultipleHiddenFileTester(@TempDir File tempDir) throws
 public void testPrintTree_onlyHiddenFileTester(@TempDir File tempDir) throws IOException {
 
     // Create "myFolder"
-    
-
-    
 
     // Create a hidden file in myFolder
     createHiddenFile(tempDir, ".hidden.txt");
     createHiddenFile(tempDir, ".unseen.txt");
     createHiddenFile(tempDir, ".hide.txt");
-
-
-
 
     // Create files in Documents
 

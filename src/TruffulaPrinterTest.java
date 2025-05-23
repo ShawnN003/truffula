@@ -509,7 +509,6 @@ public void testPrintTree_onlyHiddenFileTester(@TempDir File tempDir) throws IOE
    
     expected.append(white).append(tempDir.getName() + ("/")).append(nl).append(reset);
     assertEquals(expected.toString(), output);
-
 }
 
 

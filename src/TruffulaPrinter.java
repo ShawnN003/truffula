@@ -124,7 +124,7 @@ public class TruffulaPrinter {
     //print from root folder
     printTreeHelper(folder, 0);
 
-
+ 
 
 
 
@@ -153,7 +153,9 @@ public class TruffulaPrinter {
     if(options.isUseColor()){
       color = colorSequence.get(level % colorSequence.size());
     }
-    
+    else{
+      color = colorSequence.get(0);
+    }
     out.setCurrentColor(color);
 
     
@@ -166,11 +168,11 @@ public class TruffulaPrinter {
         out.setCurrentColor(color);
         out.println(space + file.getName() + '/');
       }
-      
 
-
+  
       //get all files inside directory
       File[] files = file.listFiles();
+      AlphabeticalFileSorter.sort(files);
 
       if(files !=null){
         for (int i=0; i< files.length; i++){

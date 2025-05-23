@@ -111,14 +111,6 @@ public class TruffulaPrinter {
     // {
     //   out.println(list[i].getAbsolutePath());
     // }
-    ConsoleColor white =  ConsoleColor.WHITE;    
-    ConsoleColor purple =  ConsoleColor.PURPLE;    
-    ConsoleColor yellow =  ConsoleColor.YELLOW;    
-
-    colorSequence.add(white);
-    colorSequence.add(purple);
-    colorSequence.add(yellow);
-
 
     //get the folder
     File folder = options.getRoot();

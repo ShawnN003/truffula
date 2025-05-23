@@ -148,19 +148,29 @@ public class TruffulaPrinter {
       space += "   ";
     }
     
+    //determine color
+    //default color
+    ConsoleColor color = ConsoleColor.WHITE;
+    if(options.isUseColor()){
+      color = colorSequence.get(level % colorSequence.size());
+
+    }
+    
 
     
-    //if folder print inside
+    //if file is directory
     if(file.isDirectory()){
       
       if(!file.isHidden())
       {
+        //set the color
+        out.setCurrentColor(color);
         out.println(space + file.getName() + '/');
       }
       
 
 
-      //get all items
+      //get all files inside directory
       File[] files = file.listFiles();
 
       if(files !=null){
@@ -174,6 +184,7 @@ public class TruffulaPrinter {
       if(!file.isHidden())
       {
         out.println(space + file.getName());
+        out.setCurrentColor(color);
       }
     }
   }

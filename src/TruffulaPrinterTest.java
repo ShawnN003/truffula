@@ -594,6 +594,83 @@ public void testPrintTree_onlyHiddenFileTester(@TempDir File tempDir) throws IOE
         assertEquals(expected.toString(), output);
 }
 
+@Test
+    public void testPrintTree_AlphabeticalTesting(@TempDir File tempDir) throws IOException {
+
+        // Build the example directory structure:
+        //    Documents/
+        //       images.txt
+        //          Alphabet.txt
+        //          Bees.txt
+        //          Center.txt
+        //          Deep.txt
+        //          Eggs.txt
+        //          Found.txt
+
+
+            // Create "myFolder"
+            File myFolder = new File(tempDir, "Document");
+            assertTrue(myFolder.mkdir(), "Document should be created");
+                        
+            // Create visible files in myFolder
+            File first = new File(myFolder, "Alphabet.txt");
+            File second = new File(myFolder, "Bees.txt");
+            File third = new File(myFolder, "Center.txt");
+            File fourth = new File(myFolder, "Deep.txt");
+            File fifth = new File(myFolder, "Eggs.txt");
+            File sixth = new File(myFolder, "Found.txt");
+
+            first.createNewFile();
+            second.createNewFile();
+            third.createNewFile();
+            fourth.createNewFile();
+            fifth.createNewFile();
+            sixth.createNewFile();
+
+    // Set up TruffulaOptions with showHidden = false and useColor = true
+    TruffulaOptions options = new TruffulaOptions(myFolder, false, true);
+
+    // Capture output using a custom PrintStream
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    PrintStream printStream = new PrintStream(baos);
+
+    // Instantiate TruffulaPrinter with custom PrintStream
+    TruffulaPrinter printer = new TruffulaPrinter(options, printStream);
+
+    // Call printTree (output goes to printStream)
+    printer.printTree();
+
+    // Retrieve printed output
+    String output = baos.toString();
+    String nl = System.lineSeparator();
+
+    // Build expected output with exact colors and indentation
+    ConsoleColor reset = ConsoleColor.RESET;
+    ConsoleColor white = ConsoleColor.WHITE;
+    ConsoleColor purple = ConsoleColor.PURPLE;
+    StringBuilder expected = new StringBuilder();
+       
+        // Assert that the output matches the expected output exactly
+        //    Documents/
+        //       images.txt
+        //          Alphabet.txt
+        //          Bees.txt
+        //          Center.txt
+        //          Deep.txt
+        //          Eggs.txt
+        //          Found.txt
+
+    
+        expected.append(white).append("Document/").append(nl).append(reset);
+        expected.append(purple).append("   Alphabet.txt").append(nl).append(reset);
+        expected.append(purple).append("   Bees.txt").append(nl).append(reset);
+        expected.append(purple).append("   Center.txt").append(nl).append(reset);
+        expected.append(purple).append("   Deep.txt").append(nl).append(reset);
+        expected.append(purple).append("   Eggs.txt").append(nl).append(reset);
+        expected.append(purple).append("   Found.txt").append(nl).append(reset);
+
+        assertEquals(expected.toString(), output);
+}
 
 
 }

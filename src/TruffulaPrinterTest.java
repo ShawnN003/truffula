@@ -512,6 +512,89 @@ public void testPrintTree_onlyHiddenFileTester(@TempDir File tempDir) throws IOE
 }
 
 
+@Test
+    public void testPrintTree_colorOutputDeepFolder(@TempDir File tempDir) throws IOException {
+
+        // Build the example directory structure:
+        //    Documents/
+        //       images/
+        //          deep1/
+        //              deep2/
+        //                  deep3/
+        //                      deep4/
+        //                         deep5/
+        //                              deep6/
+        //                                  hi.txt
+
+        File documents = new File(tempDir, "documents");
+        File images = new File(documents, "images");
+        File deep1 = new File(images, "deep1");
+        File deep2 = new File(deep1, "deep2");
+        File deep3 = new File(deep2, "deep3");
+        File deep4 = new File(deep3, "deep4");
+        File deep5 = new File(deep4, "deep5");
+        File deep6 = new File(deep5, "deep6");
+        
+
+        assertTrue(deep6.mkdirs(), "Deep folder structure should be created");
+
+    // Create file at deepest level
+    File hi = new File(deep6, "hi.txt");
+    assertTrue(hi.createNewFile(), "hi.txt should be created");
+
+    // Set up TruffulaOptions with showHidden = false and useColor = true
+    TruffulaOptions options = new TruffulaOptions(tempDir, false, true);
+
+    // Capture output using a custom PrintStream
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    PrintStream printStream = new PrintStream(baos);
+
+    // Instantiate TruffulaPrinter with custom PrintStream
+    TruffulaPrinter printer = new TruffulaPrinter(options, printStream);
+
+    // Call printTree (output goes to printStream)
+    printer.printTree();
+
+    // Retrieve printed output
+    String output = baos.toString();
+    String nl = System.lineSeparator();
+
+    // Build expected output with exact colors and indentation
+    ConsoleColor reset = ConsoleColor.RESET;
+    ConsoleColor white = ConsoleColor.WHITE;
+    ConsoleColor purple = ConsoleColor.PURPLE;
+    ConsoleColor yellow = ConsoleColor.YELLOW;
+    StringBuilder expected = new StringBuilder();
+       
+        // Assert that the output matches the expected output exactly
+        // Build the example directory structure:
+        //    Documents/
+        //       images/
+        //          deep1/
+        //              deep2/
+        //                  deep3/
+        //                      deep4/
+        //                         deep5/
+        //                              deep6/
+        //                                  hi.txt
+
+    
+        expected.append(white).append(tempDir.getName() + '/').append(nl).append(reset);
+        expected.append(purple).append("   documents/").append(nl).append(reset);
+        expected.append(yellow).append("      images/").append(nl).append(reset);
+        expected.append(white).append("         deep1/").append(nl).append(reset);
+        expected.append(purple).append("            deep2/").append(nl).append(reset);
+        expected.append(yellow).append("               deep3/").append(nl).append(reset);
+        expected.append(white).append("                  deep4/").append(nl).append(reset);
+        expected.append(purple).append("                     deep5/").append(nl).append(reset);
+        expected.append(yellow).append("                        deep6/").append(nl).append(reset);
+        expected.append(white).append("                           hi.txt").append(nl).append(reset);
+
+
+        assertEquals(expected.toString(), output);
+}
+
+
 
 }
 

@@ -153,18 +153,6 @@ public class TruffulaPrinterTest {
 
     @Test
     public void testPrintTree_CustomNewTest(@TempDir File tempDir) throws IOException {
-        // Build the example directory structure:
-        // myFolder/
-        //    Apple.txt
-        //    banana.txt
-        //    Documents/
-        //       images/
-        //          Cat.png
-        //          cat.png
-        //          Dog.png
-        //       notes.txt
-        //       README.md
-        //    zebra.txt
 
         // Create "myFolder"
         File myFolder = new File(tempDir, "myFolder");
@@ -181,9 +169,6 @@ public class TruffulaPrinterTest {
         apple.createNewFile();
         banana.createNewFile();
         zebra.createNewFile();
-
-        // Create a hidden file in myFolder
-
 
         // Create files in Documents
         File readme = new File(documents, "README.md");
@@ -243,9 +228,6 @@ public class TruffulaPrinterTest {
     }
     @Test
     public void testPrintTree_OneFolderTest(@TempDir File tempDir) throws IOException {
-        // Build the example directory structure:
-        // myFolder/
-
 
         // Create "myFolder"
         File myFolder = new File(tempDir, "myFolder");
@@ -280,7 +262,6 @@ public class TruffulaPrinterTest {
     }
     @Test
     public void testPrintTree_NoFolderTest(@TempDir File tempDir) throws IOException {
-
         File myFolder = new File(tempDir, " ");
         
 
@@ -345,7 +326,6 @@ public class TruffulaPrinterTest {
         ConsoleColor reset = ConsoleColor.RESET;
         ConsoleColor white = ConsoleColor.WHITE;
         ConsoleColor purple = ConsoleColor.PURPLE;
-        ConsoleColor yellow = ConsoleColor.YELLOW;
         StringBuilder expected = new StringBuilder();
        
         // Assert that the output matches the expected output exactly
@@ -369,15 +349,14 @@ public void testPrintTree_HiddenFileTester(@TempDir File tempDir) throws IOExcep
     File first = new File(myFolder, "Will.txt");
     File second = new File(myFolder, "This.txt");
     File third = new File(myFolder, "Work.txt");
+
+    //Create new files
     first.createNewFile();
     second.createNewFile();
     third.createNewFile();
 
     // Create a hidden file in myFolder
     createHiddenFile(myFolder, ".hidden.txt");
-
-
-    // Create files in Documents
 
     // Set up TruffulaOptions with showHidden = false and useColor = true
     TruffulaOptions options = new TruffulaOptions(myFolder, true, true);
@@ -400,7 +379,6 @@ public void testPrintTree_HiddenFileTester(@TempDir File tempDir) throws IOExcep
     ConsoleColor reset = ConsoleColor.RESET;
     ConsoleColor white = ConsoleColor.WHITE;
     ConsoleColor purple = ConsoleColor.PURPLE;
-    ConsoleColor yellow = ConsoleColor.YELLOW;
 
     StringBuilder expected = new StringBuilder();
     expected.append(white).append("myFolder/").append(nl).append(reset);
@@ -432,8 +410,6 @@ public void testPrintTree_MultipleHiddenFileTester(@TempDir File tempDir) throws
     createHiddenFile(myFolder, ".hide.txt");
 
 
-
-
     // Create files in Documents
 
     // Set up TruffulaOptions with showHidden = false and useColor = true
@@ -457,7 +433,6 @@ public void testPrintTree_MultipleHiddenFileTester(@TempDir File tempDir) throws
     ConsoleColor reset = ConsoleColor.RESET;
     ConsoleColor white = ConsoleColor.WHITE;
     ConsoleColor purple = ConsoleColor.PURPLE;
-    ConsoleColor yellow = ConsoleColor.YELLOW;
 
     StringBuilder expected = new StringBuilder();
     expected.append(white).append("myFolder/").append(nl).append(reset);
@@ -473,14 +448,11 @@ public void testPrintTree_MultipleHiddenFileTester(@TempDir File tempDir) throws
 @Test
 public void testPrintTree_onlyHiddenFileTester(@TempDir File tempDir) throws IOException {
 
-    // Create "myFolder"
-
     // Create a hidden file in myFolder
     createHiddenFile(tempDir, ".hidden.txt");
     createHiddenFile(tempDir, ".unseen.txt");
     createHiddenFile(tempDir, ".hide.txt");
 
-    // Create files in Documents
 
     // Set up TruffulaOptions with showHidden = false and useColor = true
     TruffulaOptions options = new TruffulaOptions(tempDir, true, true);
@@ -607,7 +579,6 @@ public void testPrintTree_onlyHiddenFileTester(@TempDir File tempDir) throws IOE
         //          Eggs.txt
         //          Found.txt
 
-
             // Create "myFolder"
             File myFolder = new File(tempDir, "Document");
             assertTrue(myFolder.mkdir(), "Document should be created");
@@ -671,7 +642,6 @@ public void testPrintTree_onlyHiddenFileTester(@TempDir File tempDir) throws IOE
 
         assertEquals(expected.toString(), output);
 }
-
 
 }
 
